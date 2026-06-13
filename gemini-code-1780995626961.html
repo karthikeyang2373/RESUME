@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthikeyan G | Interactive Resume Portfolio</title>
+    <!-- Google Typography & Vector Asset Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS RESET & SYSTEM VARIABLES */
+        :root {
+            --primary: #2d5a27;         /* Deep Forest Green matching resume */
+            --accent: #4caf50;          /* Bright Mint Tracker Green */
+            --bg-tint: #f0f5f3;         /* Gentle Sidebar/Card Background Tint */
+            --text-dark: #1b2622;       /* High contrast dark text tint */
+            --text-muted: #556b62;      /* Elegant secondary slate green text */
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(45, 90, 39, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* FIXED HEADER NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(45, 90, 39, 0.05);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* SPLIT PORTRAIT HOME BANNER */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-tint) 0%, #ffffff 100%);
+            padding: 100px 20px 60px 20px;
+        }
+
+        .hero-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 40px;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero-text h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h2 {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            font-size: 1.15rem;
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-4px);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-filled {
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(45, 90, 39, 0.2);
+        }
+
+        .btn-filled:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-border {
+            padding: 12px 30px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-border:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+       .hero-img .avatar-frame {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 6px solid var(--white);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+    background: white;
+}
+
+.hero-img .avatar-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+        .hero-img .avatar-frame::after {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            opacity: 0.3;
+        }
+
+        /* LAYOUT STANDARDS */
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* PROFILE DESCRIPTIONS */
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .panel-card {
+            background-color: var(--bg-tint);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .panel-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-card p {
+            color: var(--text-dark);
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* EDUCATION STRUCTURAL TIMELINE */
+        .edu-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            border-left: 3px solid var(--primary);
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .edu-node {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .edu-node:last-child {
+            margin-bottom: 0;
+        }
+
+        .node-dot {
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent);
+            border: 3px solid var(--white);
+            border-radius: 50%;
+            position: absolute;
+            left: -40px;
+            top: 4px;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+        }
+
+        .node-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .node-row h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .node-badge {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.78rem;
+            padding: 3px 14px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        .node-sub {
+            font-style: italic;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* SKILLS INTEGRATION MODULE */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+        }
+
+        .skills-col h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bar-container {
+            margin-bottom: 18px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin-bottom: 5px;
+        }
+
+        .bar-track {
+            width: 100%;
+            background-color: #e2ede8;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.2s ease-in-out;
+        }
+
+        .soft-capsules {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .capsule {
+            background-color: var(--bg-tint);
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-right: 4px solid var(--accent);
+        }
+
+        .capsule i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* PROJECT MODULE CARDS */
+        .pro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .pro-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(45, 90, 39, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(45, 90, 39, 0.12);
+        }
+
+        .pro-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3816 100%);
+            color: var(--white);
+            padding: 22px 25px;
+            position: relative;
+        }
+
+        .pro-banner i {
+            position: absolute;
+            right: 20px;
+            bottom: 12px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .pro-banner h3 {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .pro-banner .project-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background-color: rgba(255,255,255,0.18);
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-top: 4px;
+        }
+
+        .pro-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .pro-content p {
+            font-size: 0.88rem;
+            color: #3b4d45;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .badge-row span {
+            background-color: var(--bg-tint);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* COMPETITIONS & HACKATHONS */
+        .achieve-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achieve-box {
+            background-color: var(--white);
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .achieve-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .achieve-box i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .achieve-box h3 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .achieve-tag {
+            display: inline-block;
+            background-color: var(--bg-tint);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 1px 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .achieve-box p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* CONTACT SYSTEM GRID */
+        .contact-box {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 40px;
+            background-color: var(--bg-tint);
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-side h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .info-side p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-item .icon-wrapper {
+            width: 42px;
+            height: 42px;
+            background-color: var(--white);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .info-item h5 {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .info-item p {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-side {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .input-item {
+            margin-bottom: 15px;
+        }
+
+        .input-item input, .input-item textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #d0ded6;
+            background-color: #fafdfc;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.88rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .input-item input:focus, .input-item textarea:focus {
+            border-color: var(--primary);
+            background-color: var(--white);
+        }
+
+        .action-submit {
+            width: 100%;
+            padding: 11px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-submit:hover {
+            background-color: var(--accent);
+        }
+
+        /* FOOTER BRANDING */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE LAYOUT MEDIA ADAPTABILITY */
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 2.8rem; }
+            .grid-split, .skills-grid, .contact-box { grid-template-columns: 1fr; }
+            .hero-container { flex-direction: column-reverse; text-align: center; }
+            .social-row { justify-content: center; }
+            .action-buttons { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .node-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL SITE NAVIGATION HEADER -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Karthikeyan<span>.G</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- INTRODUCTORY BANNER MODULE -->
+    <section id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h3>Digital Portfolio</h3>
+                <h1>Karthikeyan G</h1>
+                <h2>Diploma in Computer Engineering Student & Software Developer</h2>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/karthikeyan-g-093244381/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/karthikeyang2373" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                    <a href="mailto:karthikeyan.g.2027@rkmshome.org" class="social-btn"><i class="far fa-envelope"></i></a>
+                </div>
+                <div class="action-buttons">
+                    <a href="#contact" class="btn-filled">Contact Info</a>
+                    <a href="#projects" class="btn-border">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <<div class="avatar-frame">
+      		  <img src="profile.png" alt="Karthikeyan G">
+   		</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-header">
+            <h2>About Me & Background</h2>
+        </div>
+        <div class="grid-split">
+            <div class="panel-card">
+                <h3><i class="fas fa-user-graduate"></i> Profile Summary</h3>
+                <p>Hello! I am a final-year Diploma in Computer Engineering student at RKMPTC[cite: 1]. I am passionate about technology, software development, and learning new programming skills[cite: 1]. I enjoy building projects, solving technical problems, and exploring modern technologies such as web development, databases, and computer applications[cite: 1].</p>
+                <p>I am eager to start my professional career in the IT industry, where I can apply my technical knowledge, gain practical experience, and continuously improve my skills[cite: 1]. I am a motivated learner with strong teamwork, communication, and problem-solving abilities[cite: 1].</p>
+            </div>
+            <div class="panel-card">
+                <h3><i class="fas fa-history"></i> Academic Background</h3>
+                <p>I am currently pursuing a Diploma in Computer Engineering at RKMPTC and am in my final year of study[cite: 1]. During my academic journey, I have gained knowledge in programming languages, database management systems, computer networks, web technologies, and software development fundamentals[cite: 1].</p>
+                <p>Through academic projects and practical assignments, I have developed technical skills in coding, debugging, and project development[cite: 1]. My goal is to build a successful career in the software and technology industry while continuing to learn emerging technologies and industry best practices[cite: 1].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCENT BAR EDUCATION TIMELINE -->
+    <section id="education">
+        <div class="section-header">
+            <h2>Education History</h2>
+        </div>
+        <div class="edu-wrapper">
+            <!-- College Engineering Block -->
+            <div class="edu-node">
+                <div class="node-dot"></div>
+                <div class="node-row">
+                    <h3>Diploma in Computer Engineering</h3>
+                    <span class="node-badge">2024 - 2027</span>
+                </div>
+                <div class="node-sub">RamaKrishna Mission Polytechnic College (RKMPTC)</div>
+                <p>Gained deep foundational knowledge in programming languages, database management systems, computer networks, web technologies, and software development fundamentals[cite: 1]. Developed strong technical coding competence through rigorous practical lab coursework.</p>
+            </div>
+            <!-- School Block -->
+            <div class="edu-node">
+                <div class="node-dot"></div>
+                <div class="node-row">
+                    <h3>High School Diploma (SSLC)</h3>
+                    <span class="node-badge">2019 - 2024</span>
+                </div>
+                <div class="node-sub">Ramakrishna Mission Residential High School</div>
+                <p>Acquired strong foundational analytical skills across advanced mathematics, core sciences, and basic computing concepts, establishing a robust academic baseline prior to engineering studies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC TRACKING SKILLS METRICS -->
+    <section id="skills">
+        <div class="section-header">
+            <h2>Skills Inventory</h2>
+        </div>
+        <div class="skills-grid">
+            <!-- Tech Metrics -->
+            <div class="skills-col">
+                <h3>Technical Proficiencies</h3>
+                <div class="bar-container">
+                    <div class="bar-label"><span>Python / Java / C Programming</span><span>80%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-label"><span>Web Design & Full-Stack Development (PHP / HTML / CSS / JS)</span><span>70%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-label"><span>Database Systems (SQL-MySQL & NoSQL-MongoDB)</span><span>70%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-label"><span>Tamil (Native Proficiency)</span><span>100%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 100%; background: var(--accent);"></div></div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-label"><span>English (Professional Working Proficiency)</span><span>80%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 80%; background: var(--accent);"></div></div>
+                </div>
+            </div>
+            <!-- Soft Caps -->
+            <div class="skills-col">
+                <h3>Demonstrated Attributes</h3>
+                <div class="soft-capsules">
+                    <div class="capsule"><i class="fas fa-bug"></i> Problem Solving & Code Debugging[cite: 1]</div>
+                    <div class="capsule"><i class="fas fa-database"></i> Structured Database Architecture Design[cite: 1]</div>
+                    <div class="capsule"><i class="fas fa-people-group"></i> Teamwork & Operational Synergy</div>
+                    <div class="capsule"><i class="fas fa-comments"></i> Professional Public Speaking[cite: 1]</div>
+                    <div class="capsule"><i class="fas fa-presentation-screen"></i> Presentation Delivery & Communication[cite: 1]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGINEERING PROJECT PORTFOLIO CARDS -->
+    <section id="projects">
+        <div class="section-header">
+            <h2>Academic & Final Projects</h2>
+        </div>
+        <div class="pro-grid">
+            <!-- Project 1 -->
+            <div class="pro-card">
+                <div class="pro-banner">
+                    <i class="fas fa-headset"></i>
+                    <h3>Campus Help Desk System</h3>
+                    <span class="project-tag">Final Year Project</span>
+                </div>
+                <div class="pro-content">
+                    <p>Developed a web-based help desk platform that allows students to submit complaints and service requests while enabling administrators to track and manage issues effectively[cite: 1]. Features standalone student & admin panels with secure ticket lifecycle handling[cite: 1].</p>
+                    <div class="badge-row">
+                        <span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="pro-card">
+                <div class="pro-banner">
+                    <i class="fas fa-boxes-stacked"></i>
+                    <h3>Stock Management System</h3>
+                    <span class="project-tag">2nd Year – 4th Semester</span>
+                </div>
+                <div class="pro-content">
+                    <p>Built a web-based inventory management application to monitor stock levels, manage products, and maintain inventory records through a user-friendly interface[cite: 1]. Supports real-time database validation tracking queries without data collisions.</p>
+                    <div class="badge-row">
+                        <span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="pro-card">
+                <div class="pro-banner">
+                    <i class="fas fa-vault"></i>
+                    <h3>Banking Management System</h3>
+                    <span class="project-tag">2nd Year – 3rd Semester</span>
+                </div>
+                <div class="pro-content">
+                    <p>Developed a console-based Banking Management System that enables users to create accounts, deposit and withdraw money, check balances, and manage customer records efficiently[cite: 1]. Built around file-based data structures storage loops[cite: 1].</p>
+                    <div class="badge-row">
+                        <span>C Programming</span><span>File Handling</span><span>Structures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTOR -->
+    <section id="achievements">
+        <div class="section-header">
+            <h2>Achievements & Competitions</h2>
+        </div>
+        <div class="achieve-container">
+            <!-- Achievement 1 -->
+            <div class="achieve-box">
+                <i class="fas fa-laptop-code"></i>
+                <h3>TN Skills Competition</h3>
+                <span class="achieve-tag">District 1st Rank</span>
+                <p>Successfully cleared Level 1 in the TN Skills Competition under the Web Design category, showcasing strong web development and design abilities.</p>
+            </div>
+            <!-- Achievement 2 -->
+            <div class="achieve-box">
+                <i class="fas fa-chess-knight"></i>
+                <h3>Division Level Chess</h3>
+                <span class="achieve-tag">3rd Place Podium</span>
+                <p>Secured 3rd Place in a Division Level Chess Tournament, demonstrating strategic thinking, concentration, and swift decision-making skills.</p>
+            </div>
+            <!-- Achievement 3 -->
+            <div class="achieve-box">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Inter-School Speech</h3>
+                <span class="achieve-tag">4th Place Honors</span>
+                <p>Secured 4th Place in an Inter-School Speech Competition, delivering an impactful speech on the classic literature topic "Siddhars (சித்தர்கள்)".</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT PANEL CONFIGURATION -->
+    <section id="contact">
+        <div class="section-header">
+            <h2>Contact Info</h2>
+        </div>
+        <div class="contact-box">
+            <div class="info-side">
+                <h3>Let's Connect!</h3>
+                <p>Feel free to reach out via email, phone, or corporate messaging platforms. I am eager to apply my technical knowledge and start my professional career[cite: 1].</p>
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="icon-wrapper"><i class="fas fa-phone"></i></div>
+                        <div><h5>Phone</h5><p>+91 8300145153</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
+                        <div><h5>Email Address</h5><p>karthikeyan.g.2027@rkmshome.org</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h5>Location</h5><p>Chennai, Tamil Nadu, India</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-side">
+                <form action="#" onsubmit="event.preventDefault(); alert('Message routing framework verified successfully!');">
+                    <div class="input-item"><input type="text" placeholder="Your Name" required></div>
+                    <div class="input-item"><input type="email" placeholder="Your Email Address" required></div>
+                    <div class="input-item"><textarea rows="4" placeholder="Your Message Content..." required></textarea></div>
+                    <button type="submit" class="action-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXED BASE FOOTER -->
+    <footer>
+        <p>&copy; 2026 Karthikeyan G. Computer Engineering Portfolio.</p>
+    </footer>
+
+    <!-- INTERACTIVE VIEWPORT SCROLL EVENT WATCHER SCRIPT -->
+    <script>
+        const targetSections = document.querySelectorAll('section');
+        const navigationLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let activeId = '';
+            targetSections.forEach(section => {
+                const topOffset = section.offsetTop;
+                if (pageYOffset >= (topOffset - 220)) {
+                    activeId = section.getAttribute('id');
+                }
+            });
+
+            navigationLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(activeId)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
